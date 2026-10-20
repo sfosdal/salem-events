@@ -134,7 +134,18 @@ const ticketmasterSecond = Object.entries(CITY.venues).filter(([, v]) => v.tm &&
 
 // Rooms with their own calendar (city.js `feed`: Pentacle's Spektrix box office) and the city-wide
 // ones (city.js `feeds`: Stranger Tickets for the Madhouse) come through feeds.mjs
-const sources = [...ticketmasterRooms, ...feedSources(CITY, BROWSER_UA)];
+// A touring expo at the fairgrounds sells timed entry (Jurassic Quest: nine sessions over three
+// days): one row a day, at the first session's clock
+const SESSION_ROOMS = new Set(['Oregon State Fairgrounds']);
+const firstSessionOnly = (fn) => async () => {
+  const seen = new Set();
+  return (await fn()).filter((e) => {
+    if (!SESSION_ROOMS.has(e.venue)) return true;
+    const k = `${e.venue}|${e.title}|${e.date}`;
+    return !seen.has(k) && seen.add(k);
+  });
+};
+const sources = [...ticketmasterRooms.map(firstSessionOnly), ...feedSources(CITY, BROWSER_UA)];
 // Secondary sources re-list shows the primaries carry under other titles;
 // anything at an already-taken venue/date/time is dropped.
 const secondary = [...ticketmasterSecond];

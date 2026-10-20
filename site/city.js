@@ -67,14 +67,14 @@
   //   feed     the room's own calendar, read by scripts/feeds.mjs
   // Scouted and left out (README "Sources scouted"): Salem's Historic Grand
   // Theatre (no listing of its own found; resellers only), the Willamette
-  // Heritage Center (its Events Calendar REST answers 403), The Reed (its
+  // Heritage Center's REST API (403 — its iCal export is read instead), The Reed (its
   // feed lists nothing), Willamette University's events app (no feed), the
   // Salem Convention Center (a hotel microsite), the Salem Art Association
   // (Humanitix), Corban (SeatGeek) and the Marion Berries (Wix, no schedule
   // feed).
   var TM_EXCLUDE = /season tickets?|parking|suite|\btours?\b|ticket packages?|vip (upgrade|package|tailgate)|club (level|seating)|^half price:|\b\d+[- ]day pass|grounds pass|all[- ]session|mini[- ]plan/i;
   var VENUES = {
-    // --- Salem: the fairgrounds and its amphitheatre, the Elsinore, the symphony's auditorium, Pentacle, the derby ---
+    // --- Salem: the fairgrounds and its amphitheatre, the Elsinore, the symphony's auditorium, Pentacle, the rink ---
     'Oregon State Fairgrounds': { // the Oregon State Fair & Exposition Center: the fair, the Pavilion, the expos and the touring shows
       capacity: 10000,
       type: 'community',
@@ -125,14 +125,24 @@
       feed: { kind: 'spektrix', url: 'https://system.spektrix.com/pentacletheatre/api/v3', link: 'https://purchase.pentacletheatre.org/EventAvailability?EventId={id}', drop: /acting class|class\b|audition|season reveal|gift card/i },
       alias: /pentacle/i,
     },
-    'The Madhouse': { // Cherry City Roller Derby's track — its bouts on Stranger Tickets (FEEDS, `boldtype`)
+    'The Madhouse': { // Cherry City Roller Derby's rink — its themed public skate nights on Stranger Tickets (FEEDS, `boldtype`)
       capacity: 500,
-      type: 'sports',
+      type: 'community',
       cssVar: '--v-madhouse',
       color: '#a286ea',
       url: 'https://www.strangertickets.com/',
       icon: 'https://www.google.com/s2/favicons?domain=www.strangertickets.com&sz=128',
       alias: /\bmadhouse\b/i,
+    },
+    'Willamette Heritage Center': { // the Thomas Kay Woolen Mill and the mission houses on Mill Street SE — its Events Calendar iCal export (`ics`): Magic at the Mill, Sheep to Shawl, the curator's tours
+      capacity: 300,
+      type: 'community',
+      cssVar: '--v-heritage',
+      color: '#eaaf86',
+      url: 'https://www.willametteheritage.org/events/',
+      icon: 'https://www.google.com/s2/favicons?domain=www.willametteheritage.org&sz=128',
+      feed: { kind: 'ics', url: 'https://www.willametteheritage.org/events/list/', drop: /museum closed|volunteer orientation|^exhibit:|\bclass\b|rental/i }, // its REST API answers 403; the iCal export serves
+      alias: /willamette heritage|mission mill/i,
     },
     // --- Keizer ---
     'Roto-Rooter Park': { // Keizer's ballpark on Field of Dreams Way, the old Volcanoes Stadium
@@ -149,14 +159,14 @@
   };
 
   // City-wide feeds (scripts/feeds.mjs): Stranger Tickets, kept to the
-  // Madhouse — the box office files Salem among its Oregon towns, so the
+  // Madhouse's skate nights — the box office files Salem among its Oregon towns, so the
   // Venue cell's room and town decide (the Everett pattern)
   var FEEDS = [
-    { kind: 'boldtype', label: 'Stranger Tickets', url: 'https://www.strangertickets.com', city: '', rooms: /madhouse.*\bSalem, OR\b/i, venue: 'The Madhouse', type: 'sports', drop: /season (?:tickets?|pass(?:es)?)|gift card/i },
+    { kind: 'boldtype', label: 'Stranger Tickets', url: 'https://www.strangertickets.com', city: '', rooms: /madhouse.*\bSalem, OR\b/i, venue: 'The Madhouse', type: 'community', drop: /season (?:tickets?|pass(?:es)?)|gift card/i },
   ];
 
   // The usual view: every room on
-  var DEFAULT_ON = ['Oregon State Fairgrounds', 'LB Day Amphitheatre', 'Elsinore Theatre', 'Rose Auditorium', 'Pentacle Theatre', 'The Madhouse', 'Roto-Rooter Park'];
+  var DEFAULT_ON = ['Oregon State Fairgrounds', 'LB Day Amphitheatre', 'Elsinore Theatre', 'Rose Auditorium', 'Pentacle Theatre', 'The Madhouse', 'Willamette Heritage Center', 'Roto-Rooter Park'];
   var DEFAULT_OFF = [];
   var PREFS_KNOWN_FROM = null; // no default-off venue yet, so nothing for saved prefs to be told about
 
@@ -164,9 +174,9 @@
   // then venue. The rows the panel shows, in order.
   var TYPES = [
     { key: 'concert', label: 'Concerts', title: 'Live music — the Elsinore, the LB Day Amphitheatre, the fairgrounds' },
-    { key: 'sports', label: 'Sports', title: 'Roller derby at the Madhouse, the ballpark in Keizer, and the Beavers and the Ducks' },
+    { key: 'sports', label: 'Sports', title: 'The ballpark in Keizer, and the Beavers and the Ducks' },
     { key: 'arts', label: 'Arts & Theater', title: 'The Elsinore, the Oregon Symphony at the Rose, Pentacle Theatre' },
-    { key: 'community', label: 'Community', title: 'The fairgrounds — the State Fair, expos, shows' },
+    { key: 'community', label: 'Community', title: 'The fairgrounds — the State Fair, expos, shows — skate nights at the Madhouse, the Heritage Center at the old mill' },
   ];
   var MOVIE_VENUE = null; // no cinema here
 
@@ -174,10 +184,10 @@
   // order and a code is a bitmask over it, so the list is APPEND-ONLY —
   // adding an entry adds a bit and every existing code keeps meaning what
   // it meant; removing or reordering one changes every link out there.
-  // 20 slots from the first build: 4 base-36 digits.
-  var CODE_LENGTH = 4;
+  // 21 slots from the first build: 5 base-36 digits.
+  var CODE_LENGTH = 5;
   var REGISTRY = [
-    ['venue', 'Oregon State Fairgrounds'], ['venue', 'LB Day Amphitheatre'], ['venue', 'Elsinore Theatre'], ['venue', 'Rose Auditorium'], ['venue', 'Pentacle Theatre'], ['venue', 'The Madhouse'], ['venue', 'Roto-Rooter Park'],
+    ['venue', 'Oregon State Fairgrounds'], ['venue', 'LB Day Amphitheatre'], ['venue', 'Elsinore Theatre'], ['venue', 'Rose Auditorium'], ['venue', 'Pentacle Theatre'], ['venue', 'The Madhouse'], ['venue', 'Willamette Heritage Center'], ['venue', 'Roto-Rooter Park'],
     ['badge', 'concert'], ['badge', 'sports'], ['badge', 'arts'], ['badge', 'community'],
     ['team', 'beavers'], ['team', 'beaversbasketball'], ['team', 'ducks'], ['team', 'ducksbasketball'], ['team', 'duckswomens'],
     ['cap', 'stadium'], ['cap', 'arena'], ['cap', 'hall'], ['cap', 'room'],
@@ -186,8 +196,8 @@
   // The words the page uses for the place
   var WORDS = {
     teamCity: 'Salem', // the board drops it from the clubs' names
-    presetDefault: 'Every room — the fairgrounds, the LB Day Amphitheatre, the Elsinore, the Rose, Pentacle, the Madhouse and Keizer — every team and type',
-    presetNeighborhood: 'Salem proper only — the fairgrounds, the LB Day, the Elsinore, the Rose, Pentacle and the Madhouse',
+    presetDefault: 'Every room — the fairgrounds, the LB Day Amphitheatre, the Elsinore, the Rose, Pentacle, the Madhouse, the Heritage Center and Keizer — every team and type',
+    presetNeighborhood: 'Salem proper only — the fairgrounds, the LB Day, the Elsinore, the Rose, Pentacle, the Madhouse and the Heritage Center',
     presetBig: 'Only the places that hold 2,000 or more — the fairgrounds, the LB Day Amphitheatre and the ballpark in Keizer',
     phrases: { all: 'Showing everything.', none: 'Showing nothing yet — open Filter and pick some venues.', neighborhood: 'Showing Salem proper only.', big: 'Showing the big rooms only — the fairgrounds, the LB Day and the Keizer ballpark.' },
   };
@@ -222,7 +232,7 @@
     // the calendar feed's header; the UID domain never changes (changing it
     // re-creates every event in subscribers' calendars)
     ics: { name: 'Salem Events', short: 'Salem Events', teams: 'Salem-area teams — every season', prodid: '-//here.events//salem-events//EN', uidDomain: 'fosdal.net', // the UID domain the whole family issues (the shared ics test pins it)
-      desc: 'Upcoming events in Salem\, OR — the Oregon State Fairgrounds\, the LB Day Amphitheatre\, the Elsinore Theatre\, the Rose Auditorium\, Pentacle Theatre\, the Madhouse and Keizer' },
+      desc: 'Upcoming events in Salem\, OR — the Oregon State Fairgrounds\, the LB Day Amphitheatre\, the Elsinore Theatre\, the Rose Auditorium\, Pentacle Theatre\, the Madhouse\, the Willamette Heritage Center and Keizer' },
     teams: TEAMS,
     venues: VENUES,
     feeds: FEEDS,

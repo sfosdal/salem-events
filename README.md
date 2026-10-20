@@ -2,7 +2,7 @@
 
 Event feed and calendar for Salem, Oregon: the Oregon State Fairgrounds and its
 LB Day Amphitheatre, the Elsinore Theatre, the Oregon Symphony at the Rose
-Auditorium, Pentacle Theatre and Cherry City Roller Derby at the Madhouse, with
+Auditorium, Pentacle Theatre and the skate nights at the Madhouse, with
 Keizer's ballpark (Roto-Rooter Park) as the "Keizer & Beyond" group — and the
 valley's campus clubs (Beavers football and basketball, Ducks football, men's
 and women's basketball) in a Teams view.
@@ -29,7 +29,7 @@ for byte, copied in by `sync-shared.sh` from the lqa-events project.
   (`scripts/feeds.mjs` kind `spektrix`): one row per performance, classes and
   auditions dropped, a performance with no seats left tagged sold out.
 - **Stranger Tickets** — the Bold Type box office's list (kind `boldtype`),
-  kept to the Madhouse in Salem by the Venue cell and pinned to that row.
+  kept to the Madhouse (the roller rink's themed skate nights) by the Venue cell and pinned to that row.
 - **Seasons** — ESPN for the Beavers and the Ducks (Teams view only: their
   grounds are not venues here).
 
