@@ -8,7 +8,7 @@
  * Options (data- attributes on the script tag):
  *   data-max     max events to show (default 8)
  *   data-target  CSS selector for the container (default "#salem-events")
- *   data-venue   only this venue (e.g. "Ball Arena")
+ *   data-venue   only this venue (e.g. "Elsinore Theatre")
  *   data-nostyle present = skip the built-in styles and bring your own
  *
  * Everything renders with evt-ev-* classes so host pages can restyle it.
