@@ -15,6 +15,30 @@
    "time": "19:30",
    "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=3201",
    "type": "arts"
+  },
+  {
+   "venue": "Pentacle Theatre",
+   "title": "Angel Street (Gaslight)",
+   "date": "2026-10-23",
+   "time": "19:30",
+   "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=3201",
+   "type": "arts"
+  },
+  {
+   "venue": "The Madhouse",
+   "title": "90's/Y2K Skate Night",
+   "date": "2026-10-23",
+   "time": "19:30",
+   "url": "https://www.merctickets.com/events/187037239/90-s-y2-k-skate-night",
+   "type": "community"
+  },
+  {
+   "venue": "Elsinore Theatre",
+   "title": "Michael Franti Trio",
+   "date": "2026-10-23",
+   "time": "20:00:00",
+   "url": "https://elsinoretheatre.com/",
+   "type": "concert"
   }
  ]
 }
