@@ -76,6 +76,7 @@
   var VENUES = {
     // --- Salem: the fairgrounds and its amphitheatre, the Elsinore, the symphony's auditorium, Pentacle, the rink ---
     'Oregon State Fairgrounds': { // the Oregon State Fair & Exposition Center: the fair, the Pavilion, the expos and the touring shows
+      geo: [44.95913, -123.007],
       capacity: 10000,
       type: 'community',
       cssVar: '--v-fairgrounds',
@@ -86,6 +87,7 @@
       alias: /oregon state fair|state fairgrounds|exposition center/i,
     },
     'LB Day Amphitheatre': { // the fairgrounds' 8,000-seat summer shed — the season runs June to September
+      geo: [44.95749, -123.01113],
       capacity: 8000,
       type: 'concert',
       cssVar: '--v-lbday',
@@ -96,6 +98,7 @@
       alias: /l\.?\s?b\.? day/i,
     },
     'Elsinore Theatre': { // the 1926 Tudor-Gothic movie palace on High Street: touring acts, comedy, the silent films on the Wurlitzer — Ticketmaster under two ids
+      geo: [44.9377, -123.0349],
       capacity: 1290,
       type: 'arts',
       cssVar: '--v-elsinore',
@@ -106,6 +109,7 @@
       alias: /elsinore/i,
     },
     'Rose Auditorium': { // the Oregon Symphony's Salem series, on Church Street SE
+      geo: [44.9013, -123.0656],
       capacity: 1100,
       type: 'arts',
       cssVar: '--v-rose',
@@ -116,6 +120,7 @@
       alias: /rose auditorium/i,
     },
     'Pentacle Theatre': { // the community theatre in the West Salem hills since 1954 — its Spektrix box office (`spektrix`), every performance
+      geo: [44.93921, -123.03948],
       capacity: 199,
       type: 'arts',
       cssVar: '--v-pentacle',
@@ -135,6 +140,7 @@
       alias: /\bmadhouse\b/i,
     },
     'Willamette Heritage Center': { // the Thomas Kay Woolen Mill and the mission houses on Mill Street SE — its Events Calendar iCal export (`ics`): Magic at the Mill, Sheep to Shawl, the curator's tours
+      geo: [44.93428, -123.02704],
       capacity: 300,
       type: 'community',
       cssVar: '--v-heritage',
@@ -146,6 +152,7 @@
     },
     // --- Keizer ---
     'Roto-Rooter Park': { // Keizer's ballpark on Field of Dreams Way, the old Volcanoes Stadium
+      geo: [44.9903, -123.0251],
       capacity: 4254,
       type: 'sports',
       area: 'town',
@@ -234,6 +241,17 @@
     ics: { name: 'Salem Events', short: 'Salem Events', teams: 'Salem-area teams — every season', prodid: '-//here.events//salem-events//EN', uidDomain: 'fosdal.net', // the UID domain the whole family issues (the shared ics test pins it)
       desc: 'Upcoming events in Salem\, OR — the Oregon State Fairgrounds\, the LB Day Amphitheatre\, the Elsinore Theatre\, the Rose Auditorium\, Pentacle Theatre\, the Madhouse\, the Willamette Heritage Center and Keizer' },
     teams: TEAMS,
+    map: { // the Map view (local-map.js; the ground drawn once by scripts/build-local-map.mjs from OpenStreetMap, committed as site/local-map.json) — every city gets one, Steve, 2026-10-26
+      kind: 'urban',
+      bbox: [44.886, -123.163, 45.006, -122.909], // south, west, north, east — every room, with a margin
+      home: [44.887, -123.08, 44.974, -122.992], // the view at first: the city's own rooms; the fit button shows the whole frame
+      roads: ['motorway', 'trunk', 'primary'],
+      tolerance: 0.6,
+      labels: [
+        { name: 'Salem', lat: 44.943, lon: -123.035, anchor: 'middle' },
+        { name: 'Keizer', lat: 44.9969, lon: -123.02663, anchor: 'middle' },
+      ],
+    },
     venues: VENUES,
     feeds: FEEDS,
     defaultOn: DEFAULT_ON,
