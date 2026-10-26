@@ -203,10 +203,10 @@
   // The words the page uses for the place
   var WORDS = {
     teamCity: 'Salem', // the board drops it from the clubs' names
-    presetDefault: 'Every room — the fairgrounds, the LB Day Amphitheatre, the Elsinore, the Rose, Pentacle, the Madhouse, the Heritage Center and Keizer — every team and type',
+    presetDefault: 'Every venue — the fairgrounds, the LB Day Amphitheatre, the Elsinore, the Rose, Pentacle, the Madhouse, the Heritage Center and Keizer — every team and type',
     presetNeighborhood: 'Salem proper only — the fairgrounds, the LB Day, the Elsinore, the Rose, Pentacle, the Madhouse and the Heritage Center',
     presetBig: 'Only the places that hold 2,000 or more — the fairgrounds, the LB Day Amphitheatre and the ballpark in Keizer',
-    phrases: { all: 'Showing everything.', none: 'Showing nothing yet — open Filter and pick some venues.', neighborhood: 'Showing Salem proper only.', big: 'Showing the big rooms only — the fairgrounds, the LB Day and the Keizer ballpark.' },
+    phrases: { all: 'Showing everything.', none: 'Showing nothing yet — open Filter and pick some venues.', neighborhood: 'Showing Salem proper only.', big: 'Showing the big venues only — the fairgrounds, the LB Day and the Keizer ballpark.' },
   };
 
   // Oregon's public holidays (app.js holidaysFor reads this instead of its
