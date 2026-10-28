@@ -47,6 +47,13 @@
    "time": "19:30",
    "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=3201",
    "type": "arts"
+  },
+  {
+   "venue": "Elsinore Theatre",
+   "title": "Amy Bruni: Walking with Ghosts",
+   "date": "2026-10-27",
+   "time": "19:30:00",
+   "url": "https://elsinoretheatre.com/"
   }
  ]
 }
