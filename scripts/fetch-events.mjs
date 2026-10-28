@@ -15,8 +15,8 @@
  */
 import { writeFileSync, readFileSync } from 'node:fs';
 import { buildIcs } from './ics.mjs';
-import { dropTimeClashes, isChurch } from './sources.mjs';
-import { mergeWithArchive, unionArchives, eventKey } from './merge.mjs';
+import { isChurch } from './sources.mjs';
+import { mergeWithArchive, unionArchives, eventKey, dropClashes } from './merge.mjs';
 import { fixLinks } from './links.mjs';
 import { calmTitle, isNotice } from './titles.mjs';
 import { applySchedules } from './schedules.mjs';
@@ -127,10 +127,13 @@ const firstSessionOnly = (fn) => async () => {
     return !seen.has(k) && seen.add(k);
   });
 };
-const sources = [...ticketmasterRooms.map(firstSessionOnly), ...feedSources(CITY, BROWSER_UA)];
+const splitVenues = (keep) => Object.fromEntries(Object.entries(CITY.venues).filter(([, v]) => keep(v)));
+const feedsFirst = feedSources({ ...CITY, venues: splitVenues((v) => !v.feed?.secondary) }, BROWSER_UA); // venues whose own calendar leads (city.js `feed`) + the city-wide `feeds`
+const feedsSecond = feedSources({ ...CITY, venues: splitVenues((v) => v.feed?.secondary), feeds: [] }, BROWSER_UA); // venues whose own calendar fills in behind Ticketmaster
+const sources = [...ticketmasterRooms.map(firstSessionOnly), ...feedsFirst];
 // Secondary sources re-list shows the primaries carry under other titles;
 // anything at an already-taken venue/date/time is dropped.
-const secondary = [...ticketmasterSecond];
+const secondary = [...ticketmasterSecond, ...feedsSecond];
 
 // Venue names as city.js spells them: a venue listed under other spellings
 // (`alias` — "Bakkt Theater", "Dollar Loan Center", "The Joint")
@@ -163,7 +166,12 @@ for (const src of sources) {
   catch (err) { console.error('Source failed:', err.message); }
 }
 for (const src of secondary) {
-  try { all = all.concat(dropTimeClashes(noChurch(await src()).map(normalizeVenue), all)); }
+  try {
+    const rows = noChurch(await src()).map(normalizeVenue).map((r) => ({ ...r, type: r.type || CITY.venues[r.venue]?.type || r.type })); // a typeless Ticketmaster row takes its venue's type
+    const kept = dropClashes(rows, all); // nothing already at that venue on that date with the same clock or title (merge.mjs)
+    if (rows.length) console.log(`  secondary ${rows[0].venue}: ${kept.length} of ${rows.length} rows new`);
+    all = all.concat(kept);
+  }
   catch (err) { console.error('Source failed:', err.message); }
 }
 if (churchDropped) console.log(`Church events dropped: ${churchDropped}`);
@@ -182,7 +190,7 @@ const fresh = all
 
 // the empty-list gate (feeds.mjs): nothing upcoming in this build's own pull means a room was
 // missed in scouting or every source is down — not a fact about the town. ALLOW_EMPTY_LIST=1 overrides.
-if (!emptyListGate(fresh, today, sources.length)) process.exit(1);
+if (!emptyListGate(fresh, today, sources.length + secondary.length)) process.exit(1);
 
 // carry past events forward. Two copies of the archive: the live feed and
 // the `archive` branch's file (every past event ever published; the workflow
