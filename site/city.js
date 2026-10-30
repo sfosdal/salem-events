@@ -147,7 +147,7 @@
       color: '#eaaf86',
       url: 'https://www.willametteheritage.org/events/',
       icon: 'https://www.google.com/s2/favicons?domain=www.willametteheritage.org&sz=128',
-      feed: { kind: 'ics', url: 'https://www.willametteheritage.org/events/list/', drop: /museum closed|volunteer orientation|^exhibit:|\bclass\b|rental/i }, // its REST API answers 403; the iCal export serves
+      feed: { kind: 'ics', chrome: true, url: 'https://www.willametteheritage.org/events/list/', drop: /museum closed|volunteer orientation|^exhibit:|\bclass\b|rental/i }, // its REST API answers 403; the iCal export serves
       alias: /willamette heritage|mission mill/i,
     },
     // --- Keizer ---
