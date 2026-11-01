@@ -131,6 +131,7 @@
       alias: /pentacle/i,
     },
     'The Madhouse': { // Cherry City Roller Derby's rink — its themed public skate nights on Stranger Tickets (FEEDS, `boldtype`)
+      geo: [44.95412, -123.01616], // 1335 Madison St NE (Nominatim)
       capacity: 500,
       type: 'community',
       cssVar: '--v-madhouse',
