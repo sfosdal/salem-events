@@ -136,7 +136,6 @@
       cssVar: '--v-madhouse',
       color: '#a286ea',
       url: 'https://www.strangertickets.com/',
-      icon: 'marks/venues/strangertickets.com.png',
       alias: /\bmadhouse\b/i,
     },
     'Willamette Heritage Center': { // the Thomas Kay Woolen Mill and the mission houses on Mill Street SE — its Events Calendar iCal export (`ics`): Magic at the Mill, Sheep to Shawl, the curator's tours
@@ -159,7 +158,6 @@
       cssVar: '--v-rotorooter',
       color: '#ea86dc',
       url: 'https://www.ticketmaster.com/roto-rooter-park-tickets-keizer/venue/ZFr9jZea7d',
-      icon: 'marks/venues/ticketmaster.com.png',
       tm: { id: 'ZFr9jZea7d', match: '', fallbackUrl: 'https://www.ticketmaster.com/', exclude: TM_EXCLUDE },
       alias: /roto-?rooter park|volcanoes stadium/i,
     },
