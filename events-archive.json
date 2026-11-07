@@ -70,6 +70,29 @@
    "time": "19:30:00",
    "url": "https://www.etix.com/ticket/p/52417573/leonid-friends-2026-tour-salem-elsinore-theatre",
    "type": "concert"
+  },
+  {
+   "venue": "Oregon State Fairgrounds",
+   "title": "Jurassic Quest – Salem, OR | Oregon State Fair and Expo Center",
+   "date": "2026-11-06",
+   "time": "13:00:00",
+   "url": "https://www.universe.com/events/jurassic-quest-salem-or-oregon-state-fair-and-expo-center-tickets-FTNL92?ref=ticketmaster"
+  },
+  {
+   "venue": "The Madhouse",
+   "title": "Superhero and Villians Skate Night",
+   "date": "2026-11-06",
+   "time": "19:30",
+   "url": "https://www.merctickets.com/events/187037234/superhero-and-villians-skate-night",
+   "type": "community"
+  },
+  {
+   "venue": "Elsinore Theatre",
+   "title": "The Fab Four: Tribute to the Beatles' A Hard Day's Night",
+   "date": "2026-11-06",
+   "time": "19:30:00",
+   "url": "https://www.etix.com/ticket/p/91798741/the-fab-four-beatlesa-hard-days-night-salem-elsinore-theatre",
+   "type": "concert"
   }
  ]
 }
