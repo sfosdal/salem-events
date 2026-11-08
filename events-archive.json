@@ -93,6 +93,28 @@
    "time": "19:30:00",
    "url": "https://www.etix.com/ticket/p/91798741/the-fab-four-beatlesa-hard-days-night-salem-elsinore-theatre",
    "type": "concert"
+  },
+  {
+   "venue": "Oregon State Fairgrounds",
+   "title": "Jurassic Quest – Salem, OR | Oregon State Fair and Expo Center",
+   "date": "2026-11-07",
+   "time": "12:00:00",
+   "url": "https://www.universe.com/events/jurassic-quest-salem-or-oregon-state-fair-and-expo-center-tickets-FTNL92?ref=ticketmaster"
+  },
+  {
+   "venue": "Pentacle Theatre",
+   "title": "Soupapalooza",
+   "date": "2026-11-07",
+   "time": "12:30",
+   "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=9002",
+   "type": "arts"
+  },
+  {
+   "venue": "Oregon State Fairgrounds",
+   "title": "Jurassic Quest – Salem, OR | Oregon State Fair and Expo Center",
+   "date": "2026-11-07",
+   "time": "15:00:00",
+   "url": "https://www.universe.com/events/jurassic-quest-salem-or-oregon-state-fair-and-expo-center-tickets-FTNL92?ref=ticketmaster"
   }
  ]
 }
