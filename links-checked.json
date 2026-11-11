@@ -1,19 +1,19 @@
 {
  "links": {
-  "https://elsinoretheatre.com/": "2026-11-08",
-  "https://pentacletheatre.org/": "2026-11-08",
-  "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401": "2026-11-08",
-  "https://www.elsinoretheatre.com/": "2026-11-08",
-  "https://www.orsymphony.org/": "2026-11-08"
+  "https://elsinoretheatre.com/": "2026-11-11",
+  "https://pentacletheatre.org/": "2026-11-11",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401": "2026-11-11",
+  "https://www.elsinoretheatre.com/": "2026-11-11",
+  "https://www.orsymphony.org/": "2026-11-11"
  },
  "guard": {
-  "https://goducks.com/sports/football/schedule": "2026-11-07",
-  "https://goducks.com/sports/mens-basketball/schedule": "2026-11-07",
-  "https://goducks.com/sports/womens-basketball/schedule": "2026-11-07",
-  "https://osubeavers.com/sports/football/schedule": "2026-11-07",
-  "https://osubeavers.com/sports/mens-basketball/schedule": "2026-11-07",
-  "https://pentacletheatre.org/": "2026-11-07",
-  "https://www.elsinoretheatre.com/": "2026-11-07",
-  "https://www.orsymphony.org/": "2026-11-07"
+  "https://goducks.com/sports/football/schedule": "2026-11-11",
+  "https://goducks.com/sports/mens-basketball/schedule": "2026-11-11",
+  "https://goducks.com/sports/womens-basketball/schedule": "2026-11-11",
+  "https://osubeavers.com/sports/football/schedule": "2026-11-11",
+  "https://osubeavers.com/sports/mens-basketball/schedule": "2026-11-11",
+  "https://pentacletheatre.org/": "2026-11-11",
+  "https://www.elsinoretheatre.com/": "2026-11-11",
+  "https://www.orsymphony.org/": "2026-11-11"
  }
 }
