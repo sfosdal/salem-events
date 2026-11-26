@@ -170,6 +170,14 @@
    "time": "14:00",
    "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401",
    "type": "arts"
+  },
+  {
+   "venue": "Pentacle Theatre",
+   "title": "Charles Dickens Writes A Christmas Carol",
+   "date": "2026-11-25",
+   "time": "19:30",
+   "url": "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401",
+   "type": "arts"
   }
  ]
 }

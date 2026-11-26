@@ -1,10 +1,17 @@
 {
  "links": {
-  "https://elsinoretheatre.com/": "2026-11-23",
-  "https://pentacletheatre.org/": "2026-11-23",
-  "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401": "2026-11-23",
-  "https://www.elsinoretheatre.com/": "2026-11-23",
-  "https://www.orsymphony.org/": "2026-11-23"
+  "https://elsinoretheatre.com/": "2026-11-26",
+  "https://pentacletheatre.org/": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=3401": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=7801": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8001": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8201": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8202": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8401": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8601": "2026-11-26",
+  "https://purchase.pentacletheatre.org/EventAvailability?EventId=8801": "2026-11-26",
+  "https://www.elsinoretheatre.com/": "2026-11-26",
+  "https://www.orsymphony.org/": "2026-11-26"
  },
  "guard": {
   "https://goducks.com/sports/football/schedule": "2026-11-23",
